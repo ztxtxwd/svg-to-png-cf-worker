@@ -79,8 +79,14 @@ async fn handle_render_from_url(svg_url: String) -> Result<Response> {
 // 直接从SVG内容渲染
 async fn handle_render_from_content(svg_content: String) -> Result<Response> {
     console_log!("rendering SVG from content, length: {}", svg_content.len());
-    
-    let svg_data = svg_content.into_bytes();
+
+    let header = r#"<?xml
+version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+"#;
+
+    let full_svg = format!("{}{}", header, svg_content);
+    let svg_data = full_svg.into_bytes();
     render_svg_to_png(svg_data).await
 }
 
