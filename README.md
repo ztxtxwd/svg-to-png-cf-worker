@@ -23,10 +23,10 @@ SVG to PNG converter in Cloudflare Workers with support for both URL-based and d
 Convert SVG from a URL by appending it to the worker endpoint:
 
 ```
-https://svg-to-png.mrproper.dev/{SVG_URL}
+https://svg-to-png.tapeless.eu.org/{SVG_URL}
 ```
 
-**Demo**: https://svg-to-png.mrproper.dev/https://docs.tandoor.dev/logo_color.svg
+**Demo**: https://svg-to-png.tapeless.eu.org/https://docs.tandoor.dev/logo_color.svg
 
 ### POST Request
 
@@ -40,7 +40,7 @@ Send a JSON object containing the SVG URL:
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '{"url": "https://docs.tandoor.dev/logo_color.svg"}' \
-  https://svg-to-png.mrproper.dev
+  https://svg-to-png.tapeless.eu.org
 ```
 
 #### Option 2: Convert from SVG Content
@@ -51,7 +51,7 @@ Send a JSON object containing the SVG content directly:
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '{"svg": "<svg width=\"100\" height=\"100\"><circle cx=\"50\" cy=\"50\" r=\"40\" fill=\"red\"/></svg>"}' \
-  https://svg-to-png.mrproper.dev
+  https://svg-to-png.tapeless.eu.org
 ```
 
 ### Request Body Schema
