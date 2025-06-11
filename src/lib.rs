@@ -85,10 +85,16 @@ version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 "#;
 
-    let full_svg = format!("{}{}", header, svg_content);
+    let full_svg = if svg_content.contains("<?xml") || svg_content.contains("<!DOCTYPE svg") {
+        svg_content
+    } else {
+        format!("{}{}", header, svg_content)
+    };
+
     let svg_data = full_svg.into_bytes();
     render_svg_to_png(svg_data).await
 }
+
 
 // 共同的SVG渲染逻辑
 async fn render_svg_to_png(svg_data: Vec<u8>) -> Result<Response> {
